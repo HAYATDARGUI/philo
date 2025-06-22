@@ -6,7 +6,7 @@
 /*   By: hdargui <hdargui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 13:37:48 by hdargui           #+#    #+#             */
-/*   Updated: 2025/06/19 13:31:20 by hdargui          ###   ########.fr       */
+/*   Updated: 2025/06/22 16:18:15 by hdargui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_rules
 	long long			start_time;
 	bool				dead;
 	pthread_mutex_t		mutex_dead;
+	pthread_mutex_t		meal_mutex;
 	pthread_mutex_t		print;
 	pthread_mutex_t		*forks;
 	t_philo				*philo;

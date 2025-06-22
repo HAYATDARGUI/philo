@@ -6,7 +6,7 @@
 /*   By: hdargui <hdargui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:50:36 by hdargui           #+#    #+#             */
-/*   Updated: 2025/06/21 18:17:26 by hdargui          ###   ########.fr       */
+/*   Updated: 2025/06/22 20:07:28 by hdargui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ bool	ft_die(t_philo *philos)
 			printf("%lld %d %s\n", get_time() - philos->rules->start_time,
 				philos->id, "died");
 			philos->rules->dead = true;
+			if (philos->rules->nb_philos == 1)
+				pthread_mutex_unlock(philos->first_fork);
 		}
 		philos->rules->dead = true;
 		pthread_mutex_unlock(&philos->rules->mutex_dead);
+		pthread_mutex_unlock(&philos->rules->meals);
 		return (true);
 	}
 	pthread_mutex_unlock(&philos->rules->meals);
@@ -66,6 +69,7 @@ void	*monitor(void *arg)
 			pthread_mutex_unlock(&rules->mutex_dead);
 			return (NULL);
 		}
+		usleep(50);
 	}
 	return (NULL);
 }

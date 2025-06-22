@@ -6,7 +6,7 @@
 /*   By: hdargui <hdargui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:09:38 by hdargui           #+#    #+#             */
-/*   Updated: 2025/06/19 13:22:08 by hdargui          ###   ########.fr       */
+/*   Updated: 2025/06/22 17:17:31 by hdargui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	init_rules(t_rules *rules, int nb_philos)
 			return (1);
 		i++;
 	}
-	if (pthread_mutex_init(&rules->mutex_dead, NULL) != 0)
+	if (pthread_mutex_init(&rules->mutex_dead, NULL) != 0
+		|| pthread_mutex_init(&rules->print, NULL) != 0
+		|| pthread_mutex_init(&rules->meals, NULL) != 0
+		|| pthread_mutex_init(&rules->meal_mutex, NULL) != 0)
 		return (1);
-	if (pthread_mutex_init(&rules->print, NULL) != 0)
-		return (1);
-	init_philo(rules);
-	return (0);
+	return (init_philo(rules), 0);
 }

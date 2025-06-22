@@ -6,7 +6,7 @@
 /*   By: hdargui <hdargui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:31:16 by hdargui           #+#    #+#             */
-/*   Updated: 2025/06/21 15:37:12 by hdargui          ###   ########.fr       */
+/*   Updated: 2025/06/22 20:08:10 by hdargui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,15 @@ void	*routine(void *arg)
 		pthread_mutex_lock(philo->second_fork);
 		print_action(philo, "has taken a fork");
 		print_action(philo, "is eating");
+		pthread_mutex_lock(&philo->rules->meals);
 		philo->last_meal = get_time();
+		pthread_mutex_unlock(&philo->rules->meals);
+		pthread_mutex_lock(&philo->rules->meal_mutex);
 		philo->meals++;
+		pthread_mutex_unlock(&philo->rules->meal_mutex);
 		smart_sleep(philo->rules->time_to_eat, philo->rules);
 		pthread_mutex_unlock(philo->first_fork);
-		print_action(philo, "has taken a fork");
 		pthread_mutex_unlock(philo->second_fork);
-		print_action(philo, "has taken a fork");
 		sleeping(philo);
 	}
 	return (NULL);
