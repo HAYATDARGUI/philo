@@ -6,7 +6,7 @@
 /*   By: hdargui <hdargui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 13:51:51 by hdargui           #+#    #+#             */
-/*   Updated: 2025/06/18 12:38:24 by hdargui          ###   ########.fr       */
+/*   Updated: 2025/06/19 13:21:10 by hdargui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,6 @@ int	parse_args(int arc, char **arv, t_rules *rules)
 		rules->must_eat = -1;
 	if (rules->time_to_die < 60 || rules->time_to_eat < 60
 		|| rules->time_to_sleep < 60)
-	{
-		write(2, "eroor : \n", 10);
-		return (1);
-	}
+		return (write(2, "Error:time must be greater than 60ms.\n", 70), 1);
 	return (0);
 }

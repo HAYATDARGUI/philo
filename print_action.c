@@ -6,7 +6,7 @@
 /*   By: hdargui <hdargui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 13:14:22 by hdargui           #+#    #+#             */
-/*   Updated: 2025/06/18 13:22:34 by hdargui          ###   ########.fr       */
+/*   Updated: 2025/06/21 15:34:11 by hdargui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_action(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(&philo->rules->print);
 	if (!check_dead(philo->rules))
-		printf("[%lld] Philo %d %s\n", get_time() - philo->rules->start_time,
+		printf("%lld %d %s\n", get_time() - philo->rules->start_time,
 			philo->id, msg);
 	pthread_mutex_unlock(&philo->rules->print);
 }

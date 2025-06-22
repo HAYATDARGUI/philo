@@ -6,27 +6,11 @@
 /*   By: hdargui <hdargui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:50:36 by hdargui           #+#    #+#             */
-/*   Updated: 2025/06/18 14:51:53 by hdargui          ###   ########.fr       */
+/*   Updated: 2025/06/21 18:17:26 by hdargui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-bool	all_philos_eat(t_rules *rules)
-{
-	int	i;
-
-	i = 0;
-	if (rules->must_eat == -1)
-		return (false);
-	while (i < rules->nb_philos)
-	{
-		if (rules->philo[i].meals < rules->must_eat)
-			return (false);
-		i++;
-	}
-	return (true);
-}
 
 bool	ft_die(t_philo *philos)
 {
@@ -36,8 +20,13 @@ bool	ft_die(t_philo *philos)
 	pthread_mutex_lock(&philos->rules->meals);
 	if (time - philos->last_meal > philos->rules->time_to_die)
 	{
-		print_action(philos, "is die");
 		pthread_mutex_lock(&philos->rules->mutex_dead);
+		if (!philos->rules->dead)
+		{
+			printf("%lld %d %s\n", get_time() - philos->rules->start_time,
+				philos->id, "died");
+			philos->rules->dead = true;
+		}
 		philos->rules->dead = true;
 		pthread_mutex_unlock(&philos->rules->mutex_dead);
 		return (true);

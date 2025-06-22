@@ -6,7 +6,7 @@
 /*   By: hdargui <hdargui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:09:38 by hdargui           #+#    #+#             */
-/*   Updated: 2025/06/18 12:40:43 by hdargui          ###   ########.fr       */
+/*   Updated: 2025/06/19 13:22:08 by hdargui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ int	init_rules(t_rules *rules, int nb_philos)
 		return (1);
 	rules->forks = malloc(sizeof(pthread_mutex_t) * nb_philos);
 	if (!rules->forks)
-	{
-		free(rules->philo);
-		return (1);
-	}
+		return (free(rules->philo), 1);
 	while (i < rules->nb_philos)
 	{
 		if (pthread_mutex_init(&rules->forks[i], NULL) != 0)
