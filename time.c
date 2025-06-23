@@ -6,7 +6,7 @@
 /*   By: hdargui <hdargui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:37:21 by hdargui           #+#    #+#             */
-/*   Updated: 2025/06/21 18:18:03 by hdargui          ###   ########.fr       */
+/*   Updated: 2025/06/23 11:09:09 by hdargui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	smart_sleep(long duration_ms, t_rules *rules)
 	{
 		if (get_time() - start >= duration_ms)
 			break ;
-		usleep(100);
+		usleep(200);
 	}
 }

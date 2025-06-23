@@ -6,7 +6,7 @@
 /*   By: hdargui <hdargui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:09:38 by hdargui           #+#    #+#             */
-/*   Updated: 2025/06/22 17:17:31 by hdargui          ###   ########.fr       */
+/*   Updated: 2025/06/23 11:16:06 by hdargui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_philo(t_rules *rules)
 	{
 		rules->philo[i].id = i + 1;
 		rules->philo[i].meals = 0;
-		rules->philo[i].last_meal = get_time();
 		rules->philo[i].rules = rules;
 		if (rules->philo[i].id == rules->nb_philos)
 		{

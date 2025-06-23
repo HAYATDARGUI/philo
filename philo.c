@@ -6,7 +6,7 @@
 /*   By: hdargui <hdargui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 15:50:36 by hdargui           #+#    #+#             */
-/*   Updated: 2025/06/22 20:07:28 by hdargui          ###   ########.fr       */
+/*   Updated: 2025/06/23 11:10:29 by hdargui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	*monitor(void *arg)
 			pthread_mutex_unlock(&rules->mutex_dead);
 			return (NULL);
 		}
-		usleep(50);
 	}
 	return (NULL);
 }
@@ -117,6 +116,7 @@ int	main(int argc, char **argv)
 	pthread_mutex_destroy(&rules.mutex_dead);
 	pthread_mutex_destroy(&rules.print);
 	pthread_mutex_destroy(&rules.meals);
+	pthread_mutex_destroy(&rules.meal_mutex);
 	free(rules.philo);
 	free(rules.forks);
 	return (0);
